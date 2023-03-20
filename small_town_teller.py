@@ -6,11 +6,11 @@ class Person:  # Person class for defining customer
 
 
 class Account:  # Account class for defining bank account
-    def __init__(self, number, type, owner, balance):  # Define init method for Account class, self refers to class instance
+    def __init__(self, number, type, owner):  # Define init method for Account class, self refers to class instance
         self.number = number  # The account number
         self.type = type  # The type of account
         self.owner = owner  # Owner of the account
-        self.balance = balance # Balance of the account
+        self.balance = 100  # Balance of the account
 
 
 class Bank:
@@ -18,23 +18,23 @@ class Bank:
         self.customers = []
         self.accounts = []
 
-        def add_customer(self, customer):
-            self.customers.append(customer)
+    def add_customer(self, customer):
+        self.customers.append(customer)
 
-        def add_account(self, account):
-            self.accounts.append(account)
+    def add_account(self, account):
+        self.accounts.append(account)
 
-        def rem_account(self, account):
-            self.accounts.remove(account)
+    def rem_account(self, account):
+        self.accounts.remove(account)
 
-        def deposit(account, amount):
-            account.balance += amount
+    def deposit(self, account, amount):
+        self.accounts.balance += int(amount)
 
-        def withdraw(self, account, amount):
-            if account >= amount:
-                account - amount
-            else:
-                return "You do not have sufficient funds"
+    def withdraw(self, account, amount):
+        if int(account) >= int(amount):
+            self.accounts.balance - amount
+        else:
+            return "You do not have sufficient funds"
 
-        def account_balance(self, account):
-            return account.balance
+    def balance_inquiry(self, account):
+        return self.accounts.balance
