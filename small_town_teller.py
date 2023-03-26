@@ -1,10 +1,12 @@
-class Person:  # Person class for defining customer
-    last_name: object
+from persistant_small_town_teller import PersistentUtils
 
-    def __init__(self, id, first_name, last_name):
+class Person:  # Person class for defining customer
+    #last_name: object
+
+    def __init__(self, id, firstname, lastname):
         self.id = id  # Customer ID
-        self.first_name = first_name  # Customer first name
-        self.last_name = last_name  # Customer last name
+        self.firstname = firstname  # Customer first name
+        self.lastname = lastname  # Customer last name
 
 
 class Account:  # Account class for defining bank account
@@ -21,7 +23,7 @@ class Bank:
         self.accounts = {}
 
     def add_customer(self, customer: Person):
-        self.customers[customer.id] = customer.first_name + " " + customer.last_name
+        self.customers[customer.id] = customer.firstname + " " + customer.lastname
 
     def add_account(self, account: Account):
         self.accounts[account.number] = account
@@ -35,7 +37,7 @@ class Bank:
             dep_account.balance += float(amount)
 
     def withdrawal(self, number, amount):
-        if number in self.accounts:  #and amount < self.accounts.balance:
+        if number in self.accounts:  # and amount < self.accounts.balance:
             with_account = self.accounts.get(number)
             with_account.balance -= float(amount)
         else:
@@ -43,3 +45,16 @@ class Bank:
 
     def balance_inquiry(self, number):
         return self.accounts.get(number).balance
+
+    def save_data(self):
+        PersistentUtils.write_pickle("customers.pickle", self.customers)
+        # Calls the write_pickle function from PersistentUtils, creates customers.pickle and writes customer dict to it
+        PersistentUtils.write_pickle("accounts.pickle", self.accounts)
+        # Calls the write_pickle function from PersistentUtils, creates accounts.pickle and writes accounts dict to it
+
+    def load_data(self):
+        PersistentUtils.load_pickle("customers.pickle")
+        # Calls the load_pickle function from PersistentUtils, loads customers.pickle
+        PersistentUtils.load_pickle("accounts.pickle")
+        # Calls the load_pickle function from PersistentUtils, loads accounts.pickle
+

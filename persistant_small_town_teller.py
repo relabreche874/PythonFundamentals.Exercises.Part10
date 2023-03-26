@@ -1,9 +1,12 @@
-from small_town_teller import Person, Account, Bank
 import pickle
 
 class PersistentUtils:
-    def write_pickle(self):
-        pass
-
-    def load_pickle(self):
-        pass
+    @staticmethod
+    def write_pickle(file_path, data):
+        with open(file_path, 'wb') as file:
+            pickle.dump(data, file)
+    @staticmethod
+    def load_pickle(file_path):
+        with open(file_path, 'rb') as file:
+            data = pickle.load(file)
+        return data
