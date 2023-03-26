@@ -1,5 +1,4 @@
 import pickle
-
 class PersistentUtils:
     @staticmethod
     def write_pickle(file_path, data):

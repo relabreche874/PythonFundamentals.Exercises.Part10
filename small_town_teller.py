@@ -1,4 +1,4 @@
-from persistant_small_town_teller import PersistentUtils
+from persistent_small_town_teller import PersistentUtils
 
 class Person:  # Person class for defining customer
     #last_name: object
